@@ -1,73 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title></title>
-
-<style>
-#ff{
-		width: 500px;
-		height: 500px;
-    margin-top: 60px;
-    margin-left: 35%;
-}
-
-  input[type=text]{
-
-
-  	width: 60%;
-  	height: 50px;
-  	border-radius: 5px;
-  	display: inline-block;
-  	margin-top:30px ;
-  	margin-left:100px;
-  }
-
-
-    input[type=button]{
-
-       background-color: rgb(199, 51, 100);
-       margin-left: 188px;
-       margin-top: 10px;
-  border: none;
-  color: white;
-  padding: 15px 30px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  cursor: pointer;
-  	display: inline-block;
-  	transition: .1s ease;
-  	
-  }
-input[type=button]:hover{
-  border-radius: 5px;
-}
-input:checked + span{
-    text-decoration: line-through;
-    color: rgb(119, 33, 69);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chack Task</title>
 </head>
-<body>
-  <center>
-    <h1 style="font-family: 'Poppins'; color: rgb(136, 78, 123); margin-top: 90px; margin-left: -4%;">
-      Check Task
-    </h1>
-  </center>
-    <div id="ff">
-      <input id="val"  type="text" name=""><br>
-      <input id="btn" onclick="x();" type="button" value="ADD">
-      <div id="chec"></div>
-    </div>
-<script>
-var va = document.getElementById("val");
-var bt = document.getElementById("btn");
-var di = document.getElementById("chec");
-function x() {
-  di.innerHTML += "<input type='checkbox'><span>" + va.value + "</span><br>";
+<style>
+
+    #cont{
+        position: relative;
+        left: 40%;
+        top: 242px;
+        width: 350px;
+        height: fit-content;
+    }
+    h1{
+        position: relative;
+        left: 10%;
+        font-style: italic;
+        font-family:  'Poppins';
+        color: rgb(163, 94, 146);
+
+    }
+    #add-task{
+        color: rgb(255, 255, 255);
+        background-color: rgb(156, 63, 152);
+        display: inline-block;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid rgb(156, 63, 152);
+        width: 90px;
+        height: 33px;
+    }
+    #add-task:active {
+      position: relative;
+      top: 1px;
+      border-bottom-width: 2px;
 }
+input[type=text] {
+    
+  display: inline-block;
+  padding: 10px;
+  width: 250px;
+  box-sizing: border-box;
+  background-color: rgba(187, 184, 184, 0.25);
+  border: none;
+  border-radius: 2px;
+  margin: 10px auto;
+  transition:background-color 0.5s ease;
+}
+
+    </style>
+<script>
+    function addtask (){
+            var  lab_value = document.getElementById('input-task').value; 
+            var items = document.createElement("INPUT");
+            var label = document.createElement("label");
+            var br = document.createElement("br");
+            items.setAttribute("type", "checkbox");
+            items.setAttribute("class", "checkbox");
+            items.setAttribute("onchange", "line_on()"); 
+            label.setAttribute("class", "label");
+            var element = document.getElementById("task");
+            element.appendChild(items);
+            element.appendChild(label);
+            element.appendChild(br);
+            var node = document.createTextNode(lab_value);
+            label.appendChild(node);
+      
+    }
+        function line_on() {
+                var myCollection = document.getElementsByClassName("checkbox")
+                var myCollection1 = document.getElementsByTagName("label");
+                for (let i = 0; i < myCollection.length; i++)
+                 {
+                    if(myCollection[i].checked==true){
+                        myCollection1[i].style.textDecoration = "line-through"
+                    }
+                       
+                    else{
+                        myCollection1[i].style.textDecoration = "none";
+                    }
+                   }
+             }
+
 </script>
+
+<body>
+    <div id="cont">
+    <h1>  CHECK TASK </h1>
+    <input type="text"  id="input-task" placeholder="ADD TASK">
+    <input type="button" value="Submit" id="add-task" onclick="addtask ()">
+    <div id="task">
+    </div>
+    </div>
 </body>
 </html>
